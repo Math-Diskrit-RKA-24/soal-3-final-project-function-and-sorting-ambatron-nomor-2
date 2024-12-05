@@ -1,9 +1,9 @@
-PlayerList = []
-
 def initPlayers():
-    PlayerList.clear()
+    global PlayerList
+    PlayerList = []
 
 def createNewPlayer(nama, kerusakan=0, kekuatanDefense=0):
+    global PlayerList
     Player = dict(name=nama,
               score=0,
               damage=kerusakan,
@@ -13,30 +13,34 @@ def createNewPlayer(nama, kerusakan=0, kekuatanDefense=0):
     return Player
 
 def addPlayer(Player):
+    global PlayerList
     PlayerList.append(Player)
 
 def removePlayer(nama):
-    for i in range(len(PlayerList)):
+    global PlayerList
+    for i in PlayerList:
         if PlayerList[i]["name"]==nama:
             PlayerList.pop(i)
             return
     print("There is no player with that name!")
 
 def setPlayer(player, key, value):
-    for i in range(len(PlayerList)):
+    global PlayerList
+    for i in PlayerList:
         if PlayerList[i]==player:
             PlayerList[i][key]=value
             return
     print("There is no player with that attribute")
 
 def attackPlayer(attacker, target):
+    global PlayerList
     a = 0
     t = 0
-    for i in range(len(PlayerList)):
+    for i in PlayerList:
         if PlayerList[i]==attacker:
             a = i
             break
-    for i in range(len(PlayerList)):
+    for i in PlayerList:
         if PlayerList[i]==target:
             t = i
             break
